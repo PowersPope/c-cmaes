@@ -25,4 +25,14 @@ int main()
     }
 
     return 0;
+
+
+    // Create a 3x3 matrix that is populated by normally distributed random values
+    double a[3][3] = {};
+    for(i = 0; i<3;++i){
+        for(j = 0; j<3;++j){
+            a[i][j] = distribution(generator);
+        }
+    }
+
 }
