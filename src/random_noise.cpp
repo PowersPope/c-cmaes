@@ -2,57 +2,76 @@
 #include <string>
 #include <random>
 
-int main()
+//Test matrix noise function
+std::vector<std::vector<double> > generateNoiseMatrix (int N, double mu, double sigma)
 {
-    //const int nrolls=10000; //number of experiments
-    //const int nstars=100;   //max number of stars to distribute
-    
-    std::default_random_engine generator;
-    std::normal_distribution<double> distribution(0,0.5);
+    std::default_random_engine generator; //initalize the random generator
+    std::normal_distribution<double> distribution(mu, sigma); // Specify Normal Distribution
 
-    //int p[10]={};
+    std::vector<std::vector<double> > mat(N, std::vector<double> (N,0.0));
+    for (int i = 0; i < N; i++)
+    {
+        for(int j = 0; j < N; j++)
+        {
+            std::cout << mat[i][j] << '\t';
+        }
+        std::cout << std::endl;
+    }
 
-    //for (int i=0; i<nrolls; ++i){
-        //double number = distribution(generator);
-        //if ((number>=0.0)&&(number<10.0)) ++p[int(number)];
-    //}
+    // Now add random noise to the matrix
+    for (int i = 0; i < N; ++i){
+        for (int j = 0; j < N; ++j){
+            mat[i][j] = distribution(generator);
+        }
+    }
 
-    //std::cout << "normal_distribution (5.0,2.0):" << std::endl;
+    // This is just to check that it worked
+    for (int i = 0; i < N; ++i){
+        for (int j = 0; j < N; ++j){
+            std::cout << mat[i][j] << '\t';
+        }
+        std::cout << '\n';
+    }
 
-    //for (int i=0; i<10; ++i){
-        //std::cout << i << "-" << (i+1) << ": ";
-        //std::cout << std::string(p[i]*nstars/nrolls,'*') << std::endl;
-    //}
+    // Return the noise matrix
+    return mat;
+}
+
+int main()
+
+{
 
     // Beginning matrix to add too
-    double test[3][3] = {
-        {8,10,2},
-        {3,5,1},
-        {9,4,3}
-    };
+    //double test[3][3] = {
+        //{8,10,2},
+        //{3,5,1},
+        //{9,4,3}
+    //};
     // Matrix addition resulting matrix
-    double sum[3][3];
+    //double sum[3][3];
 
     // Create a 3x3 matrix that is populated by normally distributed random values
-    double a[3][3];
-    for(int i = 0; i < 3; ++i){
-        for(int j = 0; j < 3; ++j){
-            a[i][j] = distribution(generator);
-        }
-    }
+    //double a[3][3];
+    //for(int i = 0; i < 3; ++i){
+        //for(int j = 0; j < 3; ++j){
+            //a[i][j] = distribution(generator);
+        //}
+    //}
     // Perform Matrix addition
-    for (int i = 0; i < 3; ++i){
-        for (int j = 0; j < 3; ++j){
-            sum[i][j] = a[i][j] + test[i][j];
-        }
-    }
+    //for (int i = 0; i < 3; ++i){
+        //for (int j = 0; j < 3; ++j){
+            //sum[i][j] = a[i][j] + test[i][j];
+        //}
+    //}
     // Print out the new matrix
-    for (int i = 0; i < 3; ++i){
-        for (int j = 0; j < 3; ++j){
-            std::cout << sum[i][j] << '\t';
-        }
-        std::cout<<'\n';
-    }
+    //for (int i = 0; i < 3; ++i){
+        //for (int j = 0; j < 3; ++j){
+            //std::cout << sum[i][j] << '\t';
+        //}
+        //std::cout<<'\n';
+    //}
+
+    generateNoiseMatrix(3, 0.0, 1.0);
 
 
 
