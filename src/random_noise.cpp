@@ -8,6 +8,7 @@ std::vector<std::vector<double> > generateNoiseMatrix (int N, double mu, double 
     std::default_random_engine generator; //initalize the random generator
     std::normal_distribution<double> distribution(mu, sigma); // Specify Normal Distribution
 
+    // instantiate a zeros matrix of desired NxN size
     std::vector<std::vector<double> > mat(N, std::vector<double> (N,0.0));
     for (int i = 0; i < N; i++)
     {
@@ -18,14 +19,14 @@ std::vector<std::vector<double> > generateNoiseMatrix (int N, double mu, double 
         std::cout << std::endl;
     }
 
-    // Now add random noise to the matrix
+    // Iter through mat element by element to add random noise to the matrix
     for (int i = 0; i < N; ++i){
         for (int j = 0; j < N; ++j){
             mat[i][j] = distribution(generator);
         }
     }
 
-    // This is just to check that it worked
+    // This is just to print out the new noise matrix to check that it worked
     for (int i = 0; i < N; ++i){
         for (int j = 0; j < N; ++j){
             std::cout << mat[i][j] << '\t';
@@ -40,41 +41,8 @@ std::vector<std::vector<double> > generateNoiseMatrix (int N, double mu, double 
 int main()
 
 {
-
-    // Beginning matrix to add too
-    //double test[3][3] = {
-        //{8,10,2},
-        //{3,5,1},
-        //{9,4,3}
-    //};
-    // Matrix addition resulting matrix
-    //double sum[3][3];
-
-    // Create a 3x3 matrix that is populated by normally distributed random values
-    //double a[3][3];
-    //for(int i = 0; i < 3; ++i){
-        //for(int j = 0; j < 3; ++j){
-            //a[i][j] = distribution(generator);
-        //}
-    //}
-    // Perform Matrix addition
-    //for (int i = 0; i < 3; ++i){
-        //for (int j = 0; j < 3; ++j){
-            //sum[i][j] = a[i][j] + test[i][j];
-        //}
-    //}
-    // Print out the new matrix
-    //for (int i = 0; i < 3; ++i){
-        //for (int j = 0; j < 3; ++j){
-            //std::cout << sum[i][j] << '\t';
-        //}
-        //std::cout<<'\n';
-    //}
-
+    // Call the noise generation function
     generateNoiseMatrix(3, 0.0, 1.0);
-
-
-
 
     return 0;
 
