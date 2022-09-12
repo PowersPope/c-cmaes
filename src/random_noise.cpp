@@ -9,7 +9,7 @@ std::vector<std::vector<double> > generateNoiseMatrix (int N, double mu, double 
     std::normal_distribution<double> distribution(mu, sigma); // Specify Normal Distribution
 
     // instantiate a zeros matrix of desired NxN size
-    std::vector<std::vector<double> > mat(N, std::vector<double> (N,0.0));
+    std::vector<double> mat[N][N]; // Edited this line adding in Parisa's instantiation for a Mat
     for (int i = 0; i < N; i++)
     {
         for(int j = 0; j < N; j++)
