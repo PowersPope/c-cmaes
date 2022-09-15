@@ -8,16 +8,8 @@ std::vector<std::vector<double> > generateNoiseMatrix (int N, double mu, double 
     std::default_random_engine generator; //initalize the random generator
     std::normal_distribution<double> distribution(mu, sigma); // Specify Normal Distribution
 
-    // instantiate a zeros matrix of desired NxN size
-    std::vector<double> mat[N][N]; // Edited this line adding in Parisa's instantiation for a Mat
-    for (int i = 0; i < N; i++)
-    {
-        for(int j = 0; j < N; j++)
-        {
-            std::cout << mat[i][j] << '\t';
-        }
-        std::cout << std::endl;
-    }
+    // instantiate a zeros matrix of desired NxN size with 0s
+    std::vector<std::vector<double> > mat(N, std::vector<double>(N)); // Edited this line adding in Parisa's instantiation for a Mat
 
     // Iter through mat element by element to add random noise to the matrix
     for (int i = 0; i < N; ++i){
